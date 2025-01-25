@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2675fc124a8b71e43ba9923caff455d8
+timeCreated: 1666153255
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 6200000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 237992
+  packageName: Ethan the Hero
+  packageVersion: 1.0
+  assetPath: Assets/Ethan the Hero/PhisicMaterial/NoFriction.physicsMaterial2D
+  uploadId: 572369

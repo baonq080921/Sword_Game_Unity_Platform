@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 347df066bf5c3374ba916bf76acbac54
+timeCreated: 1665772097
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 237992
+  packageName: Ethan the Hero
+  packageVersion: 1.0
+  assetPath: Assets/Ethan the Hero/Animation/EthanAnim/Idle.anim
+  uploadId: 572369

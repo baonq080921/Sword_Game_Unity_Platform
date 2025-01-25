@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 37c4f370c30404d47be6a93e5bc23b17
+timeCreated: 1662778243
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 237992
+  packageName: Ethan the Hero
+  packageVersion: 1.0
+  assetPath: Assets/Ethan the Hero/Script/PlayerMovement/PlayerMovementData.cs
+  uploadId: 572369
