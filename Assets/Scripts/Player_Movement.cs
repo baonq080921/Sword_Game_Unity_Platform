@@ -105,7 +105,7 @@ public class Player_Movement : MonoBehaviour
 
     private bool isGround(){
         Vector3 positiveBoxSize = new Vector3(MathF.Abs(boxSize.x),MathF.Abs(boxSize.y),0);
-        if(Physics2D.BoxCast(transform.position,positiveBoxSize,0f,-transform.up,castDistance,groundLayer)){
+        if(Physics2D.BoxCast(gameObject.transform.position,positiveBoxSize,0f,gameObject.-transform.up,castDistance,groundLayer)){
             return true;
         }else{
             return false;
@@ -114,7 +114,7 @@ public class Player_Movement : MonoBehaviour
 
     private void OnDrawGizmos() {
         Gizmos.color = isGround() ? Color.green : Color.cyan;
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+        Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance, boxSize);
     }
     
     #endregion
