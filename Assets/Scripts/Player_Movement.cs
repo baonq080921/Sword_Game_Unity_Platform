@@ -8,6 +8,7 @@ public class Player_Movement : MonoBehaviour
     #region Game Variables Region
     [SerializeField] float speed = 10f;
     [SerializeField] float jumpSpeed = 5f;
+
     private bool isFacingRight = true;
     public Rigidbody2D rb;
     [SerializeField] bool isGrounded; // Using for Oncollsion2D
@@ -78,7 +79,7 @@ public class Player_Movement : MonoBehaviour
     }
     if(jump){
         if( isGround() || !isDoubleJump){
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x , jumpSpeed, 0);
+            rb.AddForce(new Vector3(rb.linearVelocity.x , jumpSpeed , 0),ForceMode2D.Impulse);
             isDoubleJump = !isDoubleJump;
         }
     }
