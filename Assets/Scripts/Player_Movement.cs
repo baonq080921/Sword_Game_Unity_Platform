@@ -1,7 +1,9 @@
 using System;
+using System.Drawing;
 using EthanTheHero;
 using NUnit.Framework;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -10,7 +12,10 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     private bool isFacingRight = true;
     public Rigidbody2D rb;
-    [SerializeField] bool isGrounded;
+    // [SerializeField] bool isGrounded; // Using for Oncollsion2D
+    [SerializeField] Vector3 boxSize;
+    [SerializeField] float castDistance;
+    public LayerMask groundLayer;
     private bool isDoubleJump;
     
     #endregion
@@ -41,7 +46,7 @@ public class Player_Movement : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation; // Freezee the Z-axis no rotation
         
         // ======Using linerVelocity for testing character Movement: Rigibody Movement
-        if(isGrounded){
+        if(isGround()){
             rb.linearVelocity = new Vector3(direction.x * speed , rb.linearVelocity.y,0);
         }else{
             rb.linearVelocity = new Vector3(direction.x * speed * .5f , rb.linearVelocity.y,0);
@@ -71,11 +76,11 @@ public class Player_Movement : MonoBehaviour
    }
    private void Jump(){
     bool jump = Input.GetKeyDown(KeyCode.Mouse0);
-    if(isGrounded){
+    if(isGround()){
         isDoubleJump = false;
     }
     if(jump){
-        if(isGrounded || !isDoubleJump){
+        if(isGround() || !isDoubleJump){
             rb.linearVelocity = new Vector3(rb.linearVelocity.x , jumpSpeed, 0);
             isDoubleJump = !isDoubleJump;
         }
@@ -84,20 +89,45 @@ public class Player_Movement : MonoBehaviour
 
     // =================1st way to detect collison with the ground using Tag Compare ======================= //
     #region OnCollisionEnter2D Region
-   private void OnCollisionEnter2D(Collision2D other) {
+//    private void OnCollisionEnter2D(Collision2D other) {
     
-    if(other.gameObject.CompareTag("Ground")){
-        isGrounded = true;
-    }
-   }
+//     if(other.gameObject.CompareTag("Ground")){
+//         isGrounded = true;
+//     }
+//    }
 
-   private void OnCollisionExit2D(Collision2D other) {
-    if(other.gameObject.CompareTag("Ground")){
-        isGrounded = false;
-    }
-   }
+//    private void OnCollisionExit2D(Collision2D other) {
+//     if(other.gameObject.CompareTag("Ground")){
+//         isGrounded = false;
+//     }
+//    }
     #endregion
     
+    // =================2nd way to detect collison with the ground using Raycast ======================= //
+    #region Raycasting Collison
+
+    private bool isGround(){
+        if(Physics2D.BoxCast(gameObject.transform.position,boxSize,0,-gameObject.transform.up,castDistance,groundLayer)){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+
+    private void OnDrawGizmos() {
+        if(isGround()){
+            Gizmos.color = UnityEngine.Color.cyan;
+        }else{
+            Gizmos.color = UnityEngine.Color.red;
+        }
+        
+        Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance,boxSize);
+
+    }
+    
+    #endregion
 
 
 }
