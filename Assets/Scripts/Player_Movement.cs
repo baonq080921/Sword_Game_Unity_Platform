@@ -1,7 +1,5 @@
 using System;
-using System.Drawing;
 using EthanTheHero;
-using NUnit.Framework;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -12,7 +10,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     private bool isFacingRight = true;
     public Rigidbody2D rb;
-    // [SerializeField] bool isGrounded; // Using for Oncollsion2D
+    [SerializeField] bool isGrounded; // Using for Oncollsion2D
     [SerializeField] Vector3 boxSize;
     [SerializeField] float castDistance;
     public LayerMask groundLayer;
@@ -23,7 +21,6 @@ public class Player_Movement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Start ting isDoubleJump: "+ isDoubleJump);
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -80,7 +77,7 @@ public class Player_Movement : MonoBehaviour
         isDoubleJump = false;
     }
     if(jump){
-        if(isGround() || !isDoubleJump){
+        if( isGround() || !isDoubleJump){
             rb.linearVelocity = new Vector3(rb.linearVelocity.x , jumpSpeed, 0);
             isDoubleJump = !isDoubleJump;
         }
@@ -107,24 +104,17 @@ public class Player_Movement : MonoBehaviour
     #region Raycasting Collison
 
     private bool isGround(){
-        if(Physics2D.BoxCast(gameObject.transform.position,boxSize,0,-gameObject.transform.up,castDistance,groundLayer)){
+        Vector3 positiveBoxSize = new Vector3(MathF.Abs(boxSize.x),MathF.Abs(boxSize.y),0);
+        if(Physics2D.BoxCast(transform.position,positiveBoxSize,0f,-transform.up,castDistance,groundLayer)){
             return true;
-        }
-        else{
+        }else{
             return false;
         }
-        
     }
 
     private void OnDrawGizmos() {
-        if(isGround()){
-            Gizmos.color = UnityEngine.Color.cyan;
-        }else{
-            Gizmos.color = UnityEngine.Color.red;
-        }
-        
-        Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance,boxSize);
-
+        Gizmos.color = isGround() ? Color.green : Color.cyan;
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
     
     #endregion

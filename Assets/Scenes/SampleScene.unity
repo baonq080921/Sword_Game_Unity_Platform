@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4787624443014810, guid: 145c07d78e4332a40bbf42389a7172e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.09
+      value: 1.159
       objectReference: {fileID: 0}
     - target: {fileID: 4787624443014810, guid: 145c07d78e4332a40bbf42389a7172e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -187,7 +187,8 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114164791449630524, guid: 145c07d78e4332a40bbf42389a7172e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -355,7 +356,7 @@ GameObject:
   - component: {fileID: 844968400}
   - component: {fileID: 844968399}
   - component: {fileID: 844968398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -499,6 +500,11 @@ MonoBehaviour:
   jumpSpeed: 5
   rb: {fileID: 0}
   isGrounded: 0
+  boxSize: {x: -0.35, y: 0.39, z: 0}
+  castDistance: 0.57
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
