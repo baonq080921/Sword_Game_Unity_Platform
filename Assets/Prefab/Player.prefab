@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 4432989004280091244}
   - component: {fileID: 7450584376714855065}
   - component: {fileID: 1376864823700683774}
+  - component: {fileID: 3893594918832393785}
   m_Layer: 8
-  m_Name: Ethan_Hero
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   isGrounded: 0
   boxSize: {x: -0.25, y: 0.13, z: 0}
   castDistance: 0.6
+  isAttacking: 0
   animator: {fileID: 1376864823700683774}
   groundLayer:
     serializedVersion: 2
@@ -209,6 +211,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3893594918832393785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525435430511246042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51834893ca83af84cafef996b3bb7146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
 --- !u!1 &2231455241043307962
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Security.Principal;
 using EthanTheHero;
 using UnityEngine;
 using Color = UnityEngine.Color;
@@ -7,7 +9,7 @@ public class Player_Movement : MonoBehaviour
 {
     #region Game Variables Region
     [Header("Run")]
-    [SerializeField] float speed = 10f;
+    [SerializeField]  public float speed = 10f;
     [Header("Jump")]
 
     [SerializeField] float jumpSpeed = 5f;
@@ -17,8 +19,10 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private bool isGrounded; // Using for Oncollsion2D
     [SerializeField] Vector3 boxSize;
     [SerializeField] float castDistance;
+    [SerializeField] bool isAttacking = false;
 
     [SerializeField] private Animator animator;
+
     public LayerMask groundLayer;
     private bool isDoubleJump;
     
@@ -28,14 +32,12 @@ public class Player_Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     void Update(){
         // Debug.Log("Time in Update:"+Time.deltaTime);
        PlayerMovment();
        Jump();
-
     }
     private void FixedUpdate() {
     }
@@ -84,7 +86,7 @@ public class Player_Movement : MonoBehaviour
     isFacingRight = !isFacingRight;
     // Debug.Log(transform.localScale);
    }
-   private void Jump(){
+   private void Jump(){ 
     bool jump = Input.GetKeyDown(KeyCode.Mouse0);
     if(isGround()){
         isDoubleJump = false;
@@ -129,8 +131,6 @@ public class Player_Movement : MonoBehaviour
         Gizmos.color = isGround() ? Color.green : Color.cyan;
         Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance, boxSize);
     }
-    
     #endregion
-
 
 }
