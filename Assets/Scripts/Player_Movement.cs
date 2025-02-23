@@ -6,14 +6,19 @@ using Color = UnityEngine.Color;
 public class Player_Movement : MonoBehaviour
 {
     #region Game Variables Region
+    [Header("Run")]
     [SerializeField] float speed = 10f;
+    [Header("Jump")]
+
     [SerializeField] float jumpSpeed = 5f;
 
     private bool isFacingRight = true;
-    public Rigidbody2D rb;
-    [SerializeField] bool isGrounded; // Using for Oncollsion2D
+    private Rigidbody2D rb;
+    [SerializeField] private bool isGrounded; // Using for Oncollsion2D
     [SerializeField] Vector3 boxSize;
     [SerializeField] float castDistance;
+
+    [SerializeField] private Animator animator;
     public LayerMask groundLayer;
     private bool isDoubleJump;
     
@@ -45,10 +50,17 @@ public class Player_Movement : MonoBehaviour
         
         // ======Using linerVelocity for testing character Movement: Rigibody Movement
         if(isGround()){
+            animator.SetBool("isJumping",false);    
+            if(horizontal !=0){
+                animator.SetBool("isRunning",true);
+            }else{
+                animator.SetBool("isRunning",false);
+            }
             rb.linearVelocity = new Vector3(direction.x * speed , rb.linearVelocity.y,0);
         }else{
+            animator.SetBool("isRunning",false);
+            animator.SetBool("isJumping",true);
             rb.linearVelocity = new Vector3(direction.x * speed * .5f , rb.linearVelocity.y,0);
-
         }
 
         //====Addforce====
