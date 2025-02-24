@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Security.Principal;
 using EthanTheHero;
+using NUnit.Framework;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -43,9 +44,6 @@ public class Player_Movement : MonoBehaviour
        PlayerMovment();
        Jump();
     }
-    private void FixedUpdate() {
-    }
-
     private void PlayerMovment(){
         float horizontal = Input.GetAxis("Horizontal");
         
@@ -98,6 +96,8 @@ public class Player_Movement : MonoBehaviour
     if(jump){
         if( groundCheck() || !isDoubleJump){
             rb.AddForce(new Vector3(rb.linearVelocity.x , jumpSpeed , 0),ForceMode2D.Impulse);
+            // jump without force:
+            // rb.linearVelocity = new Vector3(rb.linearVelocity.x,jumpSpeed,0); 
             isDoubleJump = !isDoubleJump;
         }
     }
