@@ -21,6 +21,8 @@ public class Enemies : MonoBehaviour
         currentHealth = currentHealth - damage;
 
         if(currentHealth <= 0){
+            GetComponent<BoxCollider2D>().enabled =  false;
+            this.enabled = false;
             Destroy(gameObject);
         }
     }
