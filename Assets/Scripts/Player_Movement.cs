@@ -25,8 +25,12 @@ public class Player_Movement : MonoBehaviour
 
     public LayerMask groundLayer;
     private bool isDoubleJump;
+    public Transform groundPoint;
     
     #endregion
+
+
+    #region  Game Logic
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,7 +55,7 @@ public class Player_Movement : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation; // Freezee the Z-axis no rotation
         
         // ======Using linerVelocity for testing character Movement: Rigibody Movement
-        if(isGround()){
+        if(groundCheck()){
             animator.SetBool("isJumping",false);    
             if(horizontal !=0){
                 animator.SetBool("isRunning",true);
@@ -88,11 +92,11 @@ public class Player_Movement : MonoBehaviour
    }
    private void Jump(){ 
     bool jump = Input.GetKeyDown(KeyCode.Mouse0);
-    if(isGround()){
+    if(groundCheck()){
         isDoubleJump = false;
     }
     if(jump){
-        if( isGround() || !isDoubleJump){
+        if( groundCheck() || !isDoubleJump){
             rb.AddForce(new Vector3(rb.linearVelocity.x , jumpSpeed , 0),ForceMode2D.Impulse);
             isDoubleJump = !isDoubleJump;
         }
@@ -118,19 +122,34 @@ public class Player_Movement : MonoBehaviour
     // =================2nd way to detect collison with the ground using Raycast ======================= //
     #region Raycasting Collison
 
-    private bool isGround(){
-        Vector3 positiveBoxSize = new Vector3(MathF.Abs(boxSize.x),MathF.Abs(boxSize.y),0);
-        if(Physics2D.BoxCast(gameObject.transform.position,positiveBoxSize,0f,-gameObject.transform.up,castDistance,groundLayer)){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    // private bool isGround(){
+    //     Vector3 positiveBoxSize = new Vector3(MathF.Abs(boxSize.x),MathF.Abs(boxSize.y),0);
+    //     if(Physics2D.BoxCast(gameObject.transform.position,positiveBoxSize,0f,-gameObject.transform.up,castDistance,groundLayer)){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
     private void OnDrawGizmos() {
-        Gizmos.color = isGround() ? Color.green : Color.cyan;
-        Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance, boxSize);
+        // Gizmos.color = isGround() ? Color.green : Color.cyan;
+        // Gizmos.DrawWireCube(gameObject.transform.position - gameObject.transform.up * castDistance, boxSize);
+        Gizmos.color = groundCheck()? Color.blue : Color.red;
+        Gizmos.DrawWireCube(groundPoint.position, boxSize);
     }
     #endregion
 
+
+    private bool groundCheck(){
+        if(Physics2D.OverlapBox(groundPoint.position,boxSize,0f,groundLayer)){
+            Debug.Log("IsGround");
+            return  true;
+        }
+        Debug.Log("On AIr");
+        return false;
+    }
+
+   
 }
+
+#endregion
