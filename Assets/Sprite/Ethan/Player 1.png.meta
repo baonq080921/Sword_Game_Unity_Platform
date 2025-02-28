@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 5c39bcb37c7743b4eb731f5b1e22251a
-AssetOrigin:
-  serializedVersion: 1
-  productId: 237992
-  packageName: Ethan the Hero
-  packageVersion: 1.0
-  assetPath: Assets/Ethan the Hero/Sprite/Ethan/Player.png
-  uploadId: 572369
+guid: 2e6a35114e21d674ba975f19f161beef
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -162,10 +155,10 @@ TextureImporter:
       name: Player_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 79
-        height: 80
+        x: 30
+        y: 40
+        width: 28
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 25, y: 0, z: 0, w: 0}
