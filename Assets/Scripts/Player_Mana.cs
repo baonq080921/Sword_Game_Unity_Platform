@@ -7,7 +7,7 @@ public class Player_Mana : MonoBehaviour
     public float delayTimer;
     public float delayTime = 0f;
     public float manaFraction ;
-    public manaRegen = 0.1f
+    public  float manaRegen = 0.1f
     public float chipSpeed = 2f;
     public Image fontManaBar;
     public Image backManaBar;
