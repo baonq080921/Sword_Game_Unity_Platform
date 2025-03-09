@@ -20,8 +20,6 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private bool isGrounded; // Using for Oncollsion2D
     [SerializeField] Vector3 boxSize;
     [SerializeField] float castDistance;
-    [SerializeField] bool isAttacking = false;
-
     [SerializeField] private Animator animator;
 
     public LayerMask groundLayer;
